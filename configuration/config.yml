@@ -1,0 +1,33 @@
+kafka:
+  bootstrap_services:
+    - 'kafka-894e26a-vizir-6c0d.aivencloud.com:18604'
+  ssl_cafile: 'keys/kafka_ca.pem'
+  ssl_certfile: 'keys/kafka_service.cert'
+  ssl_keyfile: 'keys/kafka_service.key'
+  group_id: 'checker'
+  client_id: 'checker'
+  topic: 'checker'
+
+celery:
+  main: 'checker'
+  broker_url: 'redis://default:hl3u54o25feh2365@redis-30ce034a-vizir-6c0d.aivencloud.com:18602/0'
+  backend_url: 'redis://default:hl3u54o25feh2365@redis-30ce034a-vizir-6c0d.aivencloud.com:18602/1'
+
+db:
+  host: 'pg-2e5affe6-vizir-6c0d.aivencloud.com'
+  port: 18602
+  user: 'avnadmin'
+  password: 'szlaa17tal0wt2n7'
+  sslrootcert: 'keys/postgres_ca.pem'
+  database: 'defaultdb'
+  connect_timeout: 5
+
+sentry:
+  dns: "https://5170e95df3394a5ea207be59b9fb689f@o444153.ingest.sentry.io/5418763"
+
+main:
+  url: 'https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml'
+  patterns:
+    - 'Russia'
+
+
