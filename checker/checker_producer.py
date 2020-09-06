@@ -23,6 +23,9 @@ app = Celery(**celery_config())
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
+    """
+    setup periodic tasks for celery
+    """
     logging.info('setup periodic tasks')
     cfg = main_config()
     period = cfg['period']
@@ -31,6 +34,11 @@ def setup_periodic_tasks(sender, **kwargs):
 
 @app.task
 def checker(url: str, patterns: List[str]):
+    """
+    periodic task
+    :param url: target url
+    :param patterns: list of regex
+    """
     logging.info('start checker')
     status_code, elapsed, results = parse(url, patterns)
     logging.info(

@@ -6,6 +6,13 @@ import re
 
 
 def parse(url: str, patterns: List[str]) -> Tuple[int, int, List]:
+    """ requests target url and parse page with pattern
+
+    :param url: target url
+    :param patterns: list of regex
+
+    :return: status code, elapsed time and found text
+    """
     try:
         logging.info(f'start to request url {url}')
         with requests.get(url) as contents:

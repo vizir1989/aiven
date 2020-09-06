@@ -6,6 +6,11 @@ script_dir = os.path.dirname(__file__) + '/'
 
 
 def kafka_producer_config() -> Tuple[str, Dict]:
+    """
+    Get configuration for kafka producer
+    NOTE: bootstrap_services, topic, ssl_cafile, ssl_certfile, ssl_keyfile required.
+    :return: tuple topic and dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         kafka_cfg = cfg['kafka']
@@ -23,6 +28,11 @@ def kafka_producer_config() -> Tuple[str, Dict]:
 
 
 def kafka_consumer_config() -> Tuple[str, Dict]:
+    """
+    Get configuration for kafka consumer
+    NOTE: bootstrap_services, topic, ssl_cafile, ssl_certfile, ssl_keyfile required.
+    :return: tuple topic and dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         kafka_cfg = cfg['kafka']
@@ -40,18 +50,28 @@ def kafka_consumer_config() -> Tuple[str, Dict]:
 
 
 def celery_config() -> Dict:
+    """
+    Get configuration for celery
+    NOTE: main, broker and backend_url required.
+    :return: dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         celery_cfg = cfg['celery']
         result = {
             'main': celery_cfg['main'],
             'broker': celery_cfg['broker_url'],
-            'backend': celery_cfg.get('backend_url', None),
+            'backend': celery_cfg['backend_url'],
         }
         return result
 
 
 def db_config() -> Dict:
+    """
+    Get configuration for db
+    NOTE: host, database, user, password, port, sslrootcert, connect_timeout required.
+    :return: dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         db_cfg = cfg['db']
@@ -69,6 +89,11 @@ def db_config() -> Dict:
 
 
 def sentry_config() -> Dict:
+    """
+    Get configuration for sentry
+    NOTE: dns required.
+    :return: dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         sentry_cfg = cfg['sentry']
@@ -79,6 +104,11 @@ def sentry_config() -> Dict:
 
 
 def main_config() -> Dict:
+    """
+    Get main configuration
+    NOTE: url and period required.
+    :return: dict with configuration
+    """
     with open(script_dir + 'config.yml', 'r') as yamlfile:
         cfg = yaml.load(yamlfile, Loader=yaml.SafeLoader)
         main_cfg = cfg['main']

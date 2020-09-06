@@ -5,13 +5,27 @@ import logging
 
 
 class CheckerProducer:
+    """
+    Represent producer. Send message in kafka
+    """
 
     def __init__(self, kafka_producer_config: Tuple[str, Dict]):
+        """
+        Create kafka producer
+        :param kafka_producer_config: topic and configuration for kafka
+        """
         topic, config = kafka_producer_config
         self.__topic = topic
         self.__producer = kafka.KafkaProducer(**config)
 
     def send_message(self, status_code: int, elapsed: int, results: List):
+        """
+        Send message in kafka
+
+        :param status_code: status code for target page
+        :param elapsed: elapsed time in microseconds
+        :param results: found text
+        """
         try:
             message = json.dumps({
                 'status_code': status_code,
