@@ -1,6 +1,6 @@
-from configuration.config import db_config
+
 import psycopg2
-from typing import List
+from typing import List, Dict
 import logging
 
 
@@ -19,9 +19,9 @@ class CheckerPostgres:
         "INSERT INTO tbl_checker (url, pattern, status_code, elapsed, result) " \
         "VALUES (%s, %s, %s, %s, %s)"
 
-    def __init__(self):
+    def __init__(self, db_config: Dict):
         logging.info('start to connect to postgres db')
-        self.__connection = psycopg2.connect(**db_config())
+        self.__connection = psycopg2.connect(**db_config)
         cursor = self.__connection.cursor()
         logging.info('start to create db')
         cursor.execute(CheckerPostgres._SQL_CREATE_TABLE)
