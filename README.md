@@ -68,6 +68,9 @@ I use Postgres for saving information about webpage
 ### Sentry
 I use sentry for managment logs and collect information about problem
 
+### Tox
+I use tox for testing application
+
 ## What can be improved
 
 * Add MongoDB
