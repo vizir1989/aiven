@@ -7,7 +7,7 @@ import re
 
 def parse(url: str, patterns: List[str]) -> Tuple[int, int, List]:
     try:
-        logging.info(f'start to request url {url}'.format(url=url))
+        logging.info(f'start to request url {url}')
         with requests.get(url) as contents:
             page = contents.text
             status_code = contents.status_code

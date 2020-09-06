@@ -24,7 +24,9 @@ app = Celery(**celery_config())
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     logging.info('setup periodic tasks')
-    sender.add_periodic_task(10.0, checker.s(**main_config()), name='checker')
+    cfg = main_config()
+    period = cfg['period']
+    sender.add_periodic_task(period, checker.s(cfg['url'], cfg['patterns']), name='checker')
 
 
 @app.task

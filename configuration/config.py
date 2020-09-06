@@ -84,6 +84,7 @@ def main_config() -> Dict:
         main_cfg = cfg['main']
         result = {
             'url': main_cfg['url'],
-            'patterns': main_cfg.get('patterns', [])
+            'patterns': main_cfg.get('patterns', []),
+            'period': main_cfg['period']
         }
         return result
