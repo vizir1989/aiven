@@ -81,3 +81,4 @@ I use tox for testing application
 * Add health checker (may be add grafanalib)
 * Add code style tests
 * Add docker to docker hub
+* Add CI/CD (for example GitLab)
