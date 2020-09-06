@@ -1,7 +1,7 @@
 from celery import Celery
 from parser.parser import parse
 from checker_kafka.kafka_producer.producer import CheckerProducer
-from configuration.config import celery_config, main_config, sentry_config
+from configuration.config import celery_config, main_config, sentry_config, kafka_producer_config
 from typing import List
 
 import logging
@@ -36,7 +36,7 @@ def checker(url: str, patterns: List[str]):
     logging.info(
         f'checker results for {url} ({patterns}) status_code: {status_code}, elapsed: {elapsed}, results: {results}.'.format(
             url=url, patterns=patterns, status_code=status_code, elapsed=elapsed, results=results))
-    producer = CheckerProducer()
+    producer = CheckerProducer(kafka_producer_config())
     logging.info('send message')
     producer.send_message(status_code, elapsed, results)
     logging.info('message have been sent')

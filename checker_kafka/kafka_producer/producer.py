@@ -1,17 +1,15 @@
 import json
-from typing import List
-from kafka import KafkaProducer
-from configuration.config import kafka_producer_config
+from typing import List, Tuple, Dict
+import kafka
 import logging
 
 
 class CheckerProducer:
 
-    def __init__(self):
-        # TODO on_delivery
-        topic, config = kafka_producer_config()
+    def __init__(self, kafka_producer_config: Tuple[str, Dict]):
+        topic, config = kafka_producer_config
         self.__topic = topic
-        self.__producer = KafkaProducer(**config)
+        self.__producer = kafka.KafkaProducer(**config)
 
     def send_message(self, status_code: int, elapsed: int, results: List):
         try:

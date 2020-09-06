@@ -1,11 +1,12 @@
 import kafka
 import json
 import logging
+from typing import Dict, Tuple, List
 
 
 class CheckerConsumer:
 
-    def __init__(self, db, main_config, kafka_config):
+    def __init__(self, db, main_config: Dict, kafka_config: Tuple[str, Dict]):
         topic, config = kafka_config
         logging.info('connect to kafka consumer')
         self.__consumer = kafka.KafkaConsumer(topic, **config)
