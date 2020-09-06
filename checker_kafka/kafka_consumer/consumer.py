@@ -1,7 +1,8 @@
-import kafka
 import json
 import logging
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple
+
+import kafka
 
 
 class CheckerConsumer:

@@ -1,6 +1,7 @@
-import yaml
 import os
 from typing import Dict, Tuple
+
+import yaml
 
 script_dir = os.path.dirname(__file__) + '/'
 

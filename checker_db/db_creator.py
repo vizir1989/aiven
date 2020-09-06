@@ -1,5 +1,6 @@
-from checker_db.checker_postgres import CheckerPostgres
 from typing import Union
+
+from checker_db.checker_postgres import CheckerPostgres
 from configuration.config import db_config
 
 

@@ -1,8 +1,8 @@
-from typing import List, Tuple
 import logging
+import re
+from typing import List, Tuple
 
 import requests
-import re
 
 
 def parse(url: str, patterns: List[str]) -> Tuple[int, int, List]:

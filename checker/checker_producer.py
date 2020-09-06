@@ -1,12 +1,13 @@
-from celery import Celery
-from parser.parser import parse
-from checker_kafka.kafka_producer.producer import CheckerProducer
-from configuration.config import celery_config, main_config, sentry_config, kafka_producer_config
+import logging
 from typing import List
 
-import logging
 import sentry_sdk
+from celery import Celery
 from sentry_sdk.integrations.logging import LoggingIntegration
+
+from checker_kafka.kafka_producer.producer import CheckerProducer
+from configuration.config import celery_config, main_config, sentry_config, kafka_producer_config
+from parser.parser import parse
 
 sentry_logging = LoggingIntegration(
     level=logging.INFO,  # Capture info and above as breadcrumbs

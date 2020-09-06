@@ -1,7 +1,7 @@
+import logging
+from typing import List, Dict
 
 import psycopg2
-from typing import List, Dict
-import logging
 
 
 class CheckerPostgres:
