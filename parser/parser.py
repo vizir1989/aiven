@@ -12,12 +12,16 @@ def parse(url: str, patterns: List[str]) -> Tuple[int, int, List]:
             page = contents.text
             status_code = contents.status_code
             elapsed = contents.elapsed
-            result = []
-            if page:
-                logging.info('start to find info')
-                for pattern in patterns:
-                    result = re.findall(pattern, page)
-            return status_code, elapsed.microseconds, result
-    except requests.exceptions.MissingSchema as error:
+            if status_code == 200:
+                result = []
+                if page:
+                    logging.info('start to find info')
+                    for pattern in patterns:
+                        for found in re.findall(pattern, page):
+                            result.append(found)
+                return status_code, elapsed.microseconds, result
+            else:
+                return status_code, elapsed.microseconds, []
+    except requests.exceptions.RequestException as error:
         logging.error(error, exc_info=True)
-        return -1, -1, []
+        return 0, 0, []
