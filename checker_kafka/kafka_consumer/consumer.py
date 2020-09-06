@@ -1,17 +1,16 @@
-from kafka import KafkaConsumer
-from configuration.config import kafka_consumer_config, main_config
+import kafka
 import json
 import logging
 
 
 class CheckerConsumer:
 
-    def __init__(self, db):
-        topic, config = kafka_consumer_config()
+    def __init__(self, db, main_config, kafka_config):
+        topic, config = kafka_config
         logging.info('connect to kafka consumer')
-        self.__consumer = KafkaConsumer(topic, **config)
+        self.__consumer = kafka.KafkaConsumer(topic, **config)
         self.__db = db
-        cfg = main_config()
+        cfg = main_config
         self.__url, self.__patterns = cfg['url'], cfg['patterns']
 
     def start(self):
