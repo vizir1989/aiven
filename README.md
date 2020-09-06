@@ -66,15 +66,18 @@ I use kafka for produce and consume message about webpage
 I use Postgres for saving information about webpage
 
 ### Sentry
-I use sentry for managment logs and collect information about problem
+I use sentry for management logs and collect information about problem
 
 ### Tox
 I use tox for testing application
 
 ## What can be improved
 
-* Add MongoDB
+* Add MongoDB (and possibility choose between postgreSQL and MongoDB)
+* Add ORM Library (SQLAlchemy)
 * Use async instead of sync library
 * Add pytest-postgresql and pytest-kafka for testing
 * Add Flower for celery monitoring
 * Add health checker (may be add grafanalib)
+* Add code style tests
+* Add docker to docker hub
